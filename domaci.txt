@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class stream1 {
+    public static List<Integer> duplikat(List<Integer> a) {
+        List<Integer> b = new ArrayList<>();
+        for (int i = 0; i < a.size(); i++) {
+            if (a.get(i) % 3 == 0)
+                b.add(a.get(i));
+        }
+        return b.stream().distinct().collect(Collectors.toList());
+    }
+    public static List<Integer> duplikat1(List<Integer> a) {
+        List<Integer> b = new ArrayList<>();
+        for (int i = 0; i < a.size(); i++) {
+            if (a.get(i) % 2 != 0)
+                b.add(a.get(i));
+        }
+        return b.stream().map(x->x*2).distinct().collect(Collectors.toList());}
+
+
+
+
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4,3,6, 5, 6, 7,6,9,12, 9);
+        List<Integer> deljivi = numbers.stream().filter(x -> {
+            return x % 3 == 0;
+       }).map(x -> x + 2).collect(Collectors.toList());
+        System.out.println(deljivi);
+        List<Integer> x = new ArrayList<>(duplikat(numbers));
+        System.out.println(x);
+        List<Integer> y = new ArrayList<>(duplikat1(numbers));
+        System.out.println(y);
+    }
+}
